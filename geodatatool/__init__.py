@@ -2,4 +2,4 @@
 
 __author__ = """Clancy Oliver"""
 __email__ = 'clancy.geodata@gmail.com'
-__version__ = '0.0.1'
+__version__ = '0.0.2'
