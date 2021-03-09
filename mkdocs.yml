@@ -23,7 +23,7 @@ plugins:
     - git-revision-date
     - mkdocs-jupyter:
           include_source: True
-          # execute: True
+          execute: True
           
 markdown_extensions:
     - attr_list
@@ -46,3 +46,6 @@ nav:
     - Report Issues: https://github.com/clancygeodata/geodatatool/issues
     - API Reference:
           - geodatatool module: geodatatool.md
+    - Notebooks:
+          - notebooks/ipyleaflet_intro_example.ipynb
+          - notebooks/folium_intro_example.ipynb
