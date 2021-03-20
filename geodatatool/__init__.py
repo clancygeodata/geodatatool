@@ -2,6 +2,6 @@
 
 __author__ = """Clancy Oliver"""
 __email__ = 'clancy.geodata@gmail.com'
-__version__ = '0.0.3'
+__version__ = '0.0.4'
 
 from .geodatatool import *
