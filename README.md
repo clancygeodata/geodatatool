@@ -17,7 +17,9 @@
 
 ## Features
 
--   TODO
+-   Create basic interactive maps in Jupyter Notebooks
+-   Add files to maps in shapefile or geoJSON format
+-   Load and display visual media in Jupyter Notebooks
 
 ## Credits
 
