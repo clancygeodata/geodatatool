@@ -2,11 +2,14 @@
 
 def load_image_from_url(url):
     """Loads an image from the specified URL.
+
     Args:
         url (str): URL of the image.
+
     Returns:
-        object: Image object.
-    """
+        [type]: Image object.
+    """    
+
     from PIL import Image
     import requests
     from io import BytesIO
@@ -22,9 +25,11 @@ def load_image_from_url(url):
 
 def display_youtube(id="h0pz3S6Tvx0"):
     """Displays a YouTube video within Jupyter notebooks.
+
     Args:
-        id (str, optional): Unique ID of the video. Defaults to 'h0pz3S6Tvx0'.
-    """
+        id (str, optional): Unique ID of the video. Defaults to "h0pz3S6Tvx0".
+    """    
+
     from IPython.display import YouTubeVideo, display
     import ipywidgets
 

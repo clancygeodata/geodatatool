@@ -46,6 +46,7 @@ nav:
     - Report Issues: https://github.com/clancygeodata/geodatatool/issues
     - API Reference:
           - geodatatool module: geodatatool.md
+          - visual module: visual.md
     - Notebooks:
           - notebooks/ipyleaflet_intro_example.ipynb
           - notebooks/folium_intro_example.ipynb
