@@ -131,6 +131,30 @@ class Map(ipyleaflet.Map):
 
     addLayer = add_ee_layer
 
+    def add_cluster_from_csv(self, in_csv, latitude="longitude", longitude="latitude", label=None, layer_name="Marker cluster"):
+
+        from ipyleaflet import GeoJSON, Marker, MarkerCluster
+
+        out_json = in_csv.replace(".csv", ".json")
+        
+        json_from_csv = csv_to_json(in_csv=in_csv, out_json=out_json, latitude=latitude, longitude=longitude)
+
+        file_path = os.path.abspath(json_from_csv)
+
+        with open(file_path) as f:
+            json_data = json.load(f)
+
+        marker_cluster = MarkerCluster(
+            markers=[Marker(location=feature['geometry']['coordinates'][::-1]) for feature in json_data['features']],
+            name = 'Markers')
+
+        self.add_layer(marker_cluster)
+
+        
+
+
+
+
 def shp_to_geojson(in_shp, out_geojson=None):
     """Converts a shapefile to GeoJSON.
 
