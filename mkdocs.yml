@@ -53,3 +53,4 @@ nav:
           - notebooks/geodatatool_map_intro.ipynb
           - notebooks/geodatatool_add_file.ipynb
           - notebooks/visual_intro.ipynb
+          - notebooks/earthengine_intro.ipynb
