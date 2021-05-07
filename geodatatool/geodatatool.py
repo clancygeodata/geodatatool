@@ -5,7 +5,8 @@ import os
 import ee
 import ipyleaflet
 from ipyleaflet import FullScreenControl, LayersControl, DrawControl, MeasureControl, ScaleControl, TileLayer
-from .common import ee_initialize
+from .common import ee_initialize, tool_template
+from .toolbar import main_toolbar
 
 class Map(ipyleaflet.Map):
     """This map class inherits the ipyleaflet Map class.
@@ -16,15 +17,18 @@ class Map(ipyleaflet.Map):
 
     def __init__(self, **kwargs):
 
-        if "center" not in kwargs:            
-            kwargs["center"] = [30, -90]
+        if "center" not in kwargs:
+            kwargs["center"] = [40, -100]
 
-        if "zoom" not in kwargs:            
-            kwargs["zoom"] = 2
+        if "zoom" not in kwargs:
+            kwargs["zoom"] = 4
+
+        if "scroll_wheel_zoom" not in kwargs:
+            kwargs["scroll_wheel_zoom"] = True
 
         super().__init__(**kwargs)
 
-        if "height" not in kwargs:            
+        if "height" not in kwargs:
             self.layout.height = "600px"
         else:
             self.layout.height = kwargs["height"]
@@ -35,11 +39,13 @@ class Map(ipyleaflet.Map):
         self.add_control(MeasureControl())
         self.add_control(ScaleControl(position="bottomleft"))
 
+        main_toolbar(self)
+
         if "google_map" not in kwargs:
             layer = TileLayer(
-                url="https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}",
+                url="https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}",
                 attribution="Google",
-                name="Google Satellite"
+                name="Google Maps",
             )
             self.add_layer(layer)
         else:
@@ -57,6 +63,7 @@ class Map(ipyleaflet.Map):
                     name="Google Satellite"
                 )
                 self.add_layer(layer)
+
 
     def add_geojson(self, in_geojson, style=None, layer_name="Untitled"):
         """Adds a GeoJSON file to the map.
@@ -131,7 +138,15 @@ class Map(ipyleaflet.Map):
 
     addLayer = add_ee_layer
 
-    def add_cluster_from_csv(self, in_csv, latitude="longitude", longitude="latitude", label=None, layer_name="Marker cluster"):
+    def add_cluster_from_csv(self, in_csv, latitude="longitude", longitude="latitude", layer_name="Marker cluster"):
+        """[summary]
+
+        Args:
+            in_csv (str): The input csv file containing longitude and latitude columns.
+            latitude (str, optional): The column name of the latitude column. Defaults to 'latitude'.
+            longitude (str, optional): The column name of the longitude column. Defaults to 'longitude'.
+            layer_name (str, optional): The layer name for the shapefile layer. Defaults to "Marker cluster".
+        """        
 
         from ipyleaflet import GeoJSON, Marker, MarkerCluster
 
